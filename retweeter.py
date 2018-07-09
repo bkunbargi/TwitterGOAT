@@ -36,20 +36,6 @@ def tweet_it(file_name):
             for new_line in input:
                 if new_line!=line+"\n":
                     output.write(new_line)
-    #file = open(file_name,'r+')
-    #line = file.readline()
-    #print('line to be tweeted: '+line)
-    #api.update_status(line)
-    #print('tweeted')
-    #file.close()
-    #for line in open(file_name,'r+'):
-    #    file.write(line)
-    #line = line.replace(line,'Used')
-    #file.write(line)
-    #file.close()
-
-
-
 
 
 
