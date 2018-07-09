@@ -8,15 +8,22 @@ api = tweepy.API(auth)
 
 keyword = input("First Search Term:  ")
 other_key = input("Second Search Term: ")
-goat_set = list()
+goat_list = list()
 
 def run_bot(input1, input2):
     print('Building Set')
-    for tweet in tweepy.Cursor(api.search, q = input1).items():
+    for tweet in tweepy.Cursor(api.search, q = input1).items(1000):
         if input2 in tweet.text:
-            goat_set.append(tweet.text)
+            print("Next Tweet: " + tweet.text)
+            goat_list.append(tweet.text)
 
-    for element in goat_set:
-        print("Tweet: " + element)
+    print("List is built")
+    file = open('output.txt','w')
+    goat_set = set(goat_list)
+    for tweet in goat_set:
+        file.write(tweet + '\n')
+    file.close()
+    print('Finished program')
+
 
 run_bot(keyword,other_key)
