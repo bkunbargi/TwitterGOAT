@@ -10,7 +10,7 @@ print('Succesfully Logged in.')
 
 def clean_file(file_name):
     file = open(file_name,'r+')
-    transport_file = open('tweets.txt','w')
+    transport_file = open('output.txt','w')
     new_line = ''
 
 
@@ -28,11 +28,15 @@ def clean_file(file_name):
 
 
 def tweet_it(file_name):
-    with open(file_name,"r") as input:
+    with open('output/'+file_name,"r") as input:
         line = input.readline()
+        line = line.replace('lineskip','\n')
         print('Line to be tweeted: '+line)
-        api.update_status(line)
-        with open(file_name,'w') as output:
+        try:
+            api.update_status(line)
+        except:
+            print('Did not work')
+        with open('output/'+file_name,'w') as output:
             for new_line in input:
                 if new_line!=line+"\n":
                     output.write(new_line)

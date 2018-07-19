@@ -1,4 +1,4 @@
-consumer_token = ' '
-consumer_secret = ' '
-access_token = ' '
-access_token_secret = ' '
+consumer_token = '578CqsXGvHGCEjVXGBEPlV3z3'
+consumer_secret = 'Z1ZA6mexgpA6lSHVJTuvJ51X7xcmz2YiRsddfb3ztZNJzThOeP'
+access_token = '956353285857845248-6LDp0wtcnIt3dKfeWwKhxIqVrwBAZMj'
+access_token_secret = 'uk1FW7yG7D2yMJDQ1N9imeKGBJuPhA4NTZAVp8TMbigRP'

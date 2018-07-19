@@ -12,16 +12,35 @@ goat_list = list()
 
 def run_bot(input1, input2):
     print('Building Set')
-    for tweet in tweepy.Cursor(api.search, q = input1).items(1000):
-        if input2 in tweet.text:
-            print("Next Tweet: " + tweet.text)
-            goat_list.append(tweet.text)
+    result = tweepy.Cursor(api.search,q = input1, wait_on_rate_limit = True, tweet_mode = 'extended').items(100)
+    for element in result:
+        try:
+            if(element.retweet_count == 0):
+                tweet_text = element._json['full_text'].replace('\n','lineskip')
+                if(input2 in (tweet_text)):
+                    print(tweet_text.replace('\n',' '))
+                    goat_list.append(tweet_text)
+            else:
+                tweet_text = element._json['retweeted_status']['full_text'].replace('\n','lineskip')
+                if(input2 in (tweet_text)):
+                    goat_list.append(tweet_text)
+        except:
+            print('Didnt work here')
+            #print(element)
 
+    #for tweet in tweepy.Cursor(api.search,q = input1, wait_on_rate_limit = True, tweet_mode = 'extended').items(1000):
+    #    if input2 in tweet.text:
+    #        print("Next Tweet: " + tweet.text)
+    #        goat_list.append(tweet.text)
+
+    print(goat_list)
     print("List is built")
-    file = open('output.txt','w')
+
+    file = open('output'+'/'+input1+'.txt','a+')
     goat_set = set(goat_list)
     for tweet in goat_set:
-        file.write(tweet + '\n')
+        file.write(tweet)
+        file.write('\n')
     file.close()
     print('Finished program')
 
